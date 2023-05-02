@@ -3,6 +3,7 @@ import 'constants.dart';
 import 'reusableCard.dart';
 import 'imageAvatar.dart';
 import 'bigCard.dart';
+import 'stats_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -145,12 +146,20 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 17,
                       ),
-                      ReusableCard(
-                        iconSize: 40,
-                        label: 'Statistics',
-                        cardHeight: 80.0,
-                        cardWidth: 100.0,
-                        icon: Icons.bar_chart,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LineChartSample2()));
+                        },
+                        child: ReusableCard(
+                          iconSize: 40,
+                          label: 'Statistics',
+                          cardHeight: 80.0,
+                          cardWidth: 100.0,
+                          icon: Icons.bar_chart,
+                        ),
                       ),
                     ],
                   ),

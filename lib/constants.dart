@@ -8,3 +8,5 @@ const kBackgroundColor = BoxDecoration(
 );
 
 const kTextColor = Color(0xff00337C);
+
+const kDarkGreen = Color(0xff2B7A0B);
