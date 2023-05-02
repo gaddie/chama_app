@@ -5,6 +5,8 @@ import 'constants.dart';
 DateTime now = new DateTime.now();
 var year = now.year;
 
+var isActive = true;
+
 class LineChartSample2 extends StatefulWidget {
   @override
   State<LineChartSample2> createState() => _LineChartSample2State();
@@ -31,6 +33,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           SizedBox(
             height: 20,
           ),
+          //year picker
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -77,6 +80,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
           SizedBox(
             height: 20,
           ),
+
+          //graph
           Stack(
             children: <Widget>[
               AspectRatio(
@@ -115,6 +120,120 @@ class _LineChartSample2State extends State<LineChartSample2> {
               ),
             ],
           ),
+          //switch button
+          Padding(
+            padding: EdgeInsets.only(right: 30, left: 30),
+            child: Container(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              decoration: BoxDecoration(
+                color: Colors.white70.withOpacity(0.3),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ),
+              height: 60,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isActive = true;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isActive ? Colors.green : null,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                        height: 50,
+                        child: Center(
+                          child: Text(
+                            'Icome',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 2,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isActive = false;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isActive ? null : Colors.green,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                        height: 50,
+                        child: Center(
+                          child: Text(
+                            'Spend',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: 200,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white70.withOpacity(0.1),
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Income',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text('View all', style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white70.withOpacity(0.1),
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_downward,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Text('View all', style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
         ]),
       ),
     );

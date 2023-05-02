@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: ReusableCard(
                           iconSize: 40,
-                          label: 'Statistics',
+                          label: 'Statistic',
                           cardHeight: 80.0,
                           cardWidth: 100.0,
                           icon: Icons.bar_chart,
