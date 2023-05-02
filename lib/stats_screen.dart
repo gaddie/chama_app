@@ -2,6 +2,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
+DateTime now = new DateTime.now();
+var year = now.year;
+
 class LineChartSample2 extends StatefulWidget {
   @override
   State<LineChartSample2> createState() => _LineChartSample2State();
@@ -15,8 +18,65 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Scaffold(
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(color: Colors.black87),
+        decoration: kBackgroundColorTwo,
         child: ListView(children: [
+          Center(
+              child: Text(
+            'Statistics',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 35,
+            ),
+          )),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    year--;
+                  });
+                },
+                child: StatsButtonStyle(
+                  Height: 50,
+                  Width: 50,
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              StatsButtonStyle(
+                Height: 50,
+                Width: 200,
+                child: Text(
+                  '$year',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    year++;
+                  });
+                },
+                child: StatsButtonStyle(
+                  Height: 50,
+                  Width: 50,
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
           Stack(
             children: <Widget>[
               AspectRatio(
@@ -33,7 +93,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   ),
                 ),
               ),
-              SizedBox(
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white70.withOpacity(0.3),
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
                 width: 60,
                 height: 34,
                 child: TextButton(
@@ -193,7 +257,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
+          spots: [
             FlSpot(0, 3),
             FlSpot(1, 2),
             FlSpot(2, 5),
@@ -209,7 +273,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             FlSpot(12, 4),
           ],
           isCurved: true,
-          color: Colors.green,
+          color: Colors.lightGreenAccent,
           barWidth: 2,
           isStrokeCapRound: true,
           dotData: FlDotData(
@@ -302,7 +366,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             FlSpot(12, 3.44),
           ],
           isCurved: true,
-          color: Colors.green,
+          color: Colors.lightGreenAccent,
           barWidth: 3,
           isStrokeCapRound: true,
           dotData: FlDotData(
@@ -320,6 +384,29 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class StatsButtonStyle extends StatelessWidget {
+  double Height;
+  double Width;
+  var child;
+
+  StatsButtonStyle({this.child, required this.Height, required this.Width});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white70.withOpacity(0.3),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+      ),
+      height: Height,
+      width: Width,
+      child: Center(
+        child: child,
+      ),
     );
   }
 }
