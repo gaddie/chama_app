@@ -173,8 +173,10 @@ class _LineChartSample2State extends State<LineChartSample2>
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          toggleCard();
-                          isActive = true;
+                          if (isActive != true) {
+                            toggleCard();
+                            isActive = true;
+                          }
                         });
                       },
                       child: Container(
@@ -199,7 +201,10 @@ class _LineChartSample2State extends State<LineChartSample2>
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          isActive = false;
+                          if (isActive != false) {
+                            toggleCard();
+                            isActive = false;
+                          }
                         });
                       },
                       child: Container(
