@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'ReusableFlipCard.dart';
 
 DateTime now = new DateTime.now();
 var year = now.year;
@@ -12,7 +13,43 @@ class LineChartSample2 extends StatefulWidget {
   State<LineChartSample2> createState() => _LineChartSample2State();
 }
 
-class _LineChartSample2State extends State<LineChartSample2> {
+class _LineChartSample2State extends State<LineChartSample2>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation1;
+
+  bool _showFront = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+
+    _animation1 =
+        Tween<double>(begin: 0.0, end: 2.0).animate(_animationController);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+
+    super.dispose();
+  }
+
+  void toggleCard() {
+    if (_showFront) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
+
+    setState(() {
+      _showFront = !_showFront;
+    });
+  }
+
   bool showAvg = false;
 
   @override
@@ -136,6 +173,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
+                          toggleCard();
                           isActive = true;
                         });
                       },
@@ -186,53 +224,53 @@ class _LineChartSample2State extends State<LineChartSample2> {
           SizedBox(
             height: 20,
           ),
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white70.withOpacity(0.1),
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Income',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text('View all', style: TextStyle(color: Colors.white))
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white70.withOpacity(0.1),
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_downward,
-                              color: Colors.white,
-                            ),
-                          ],
+          AnimatedBuilder(
+            animation: _animation1,
+            builder: (BuildContext context, Widget? child) {
+              final angle = _animation1.value * 3.1415926535897932;
+
+              final frontOpacity = _showFront ? 1.0 : 0.0;
+              final backOpacity = _showFront ? 0.0 : 1.0;
+
+              return Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.001)
+                  ..rotateY(angle),
+                alignment: Alignment.center,
+                child: Stack(
+                  children: [
+                    Opacity(
+                      opacity: frontOpacity,
+                      child: Center(
+                        child: IcomeCard(
+                          name: 'Jane doe',
+                          IncomeOrSpend: 'Income',
+                          date: '2/2/2023',
+                          amount: '2,000',
                         ),
                       ),
-                      Text('View all', style: TextStyle(color: Colors.white))
-                    ],
-                  ),
+                    ),
+                    Opacity(
+                      opacity: backOpacity,
+                      child: Center(
+                        child: Transform(
+                          alignment: _showFront
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
+                          transform: Matrix4.identity()..rotateY(angle - angle),
+                          child: IcomeCard(
+                            name: 'Chicken project',
+                            IncomeOrSpend: 'Spend',
+                            date: '2/2/2023',
+                            amount: '20,000',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           )
         ]),
       ),
