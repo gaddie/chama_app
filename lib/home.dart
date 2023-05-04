@@ -170,6 +170,54 @@ class _HomePageState extends State<HomePage> {
                       secondTextSize: 30,
                       icon: Icons.currency_exchange)
                 ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 140,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white70.withOpacity(0.3),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Project 1',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          'Starting date',
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                        Column(
+                          children: [
+                            Icon(
+                              Icons.arrow_drop_up,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white.withOpacity(0.2),
+                              size: 40,
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),
