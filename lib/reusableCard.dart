@@ -1,3 +1,4 @@
+import 'package:chama/constants.dart';
 import 'package:flutter/material.dart';
 
 class ReusableCard extends StatelessWidget {
@@ -31,7 +32,10 @@ class ReusableCard extends StatelessWidget {
             size: iconSize,
             color: Colors.green,
           ),
-          Text(label),
+          Text(
+            label,
+            style: kTextStyleWhite,
+          ),
         ],
       ),
     );

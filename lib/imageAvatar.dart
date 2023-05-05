@@ -15,12 +15,8 @@ class MembersAvatar extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: Colors.black45,
-                radius: 27,
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('images/$image'),
-                ),
+                radius: 25,
+                backgroundImage: AssetImage('images/$image'),
               )
             ],
           ),

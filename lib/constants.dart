@@ -23,3 +23,5 @@ const kBackgroundColorTwo = BoxDecoration(
         Colors.black
       ]),
 );
+
+const kTextStyleWhite = TextStyle(color: Colors.white);

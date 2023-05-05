@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class BigCard extends StatelessWidget {
   double firstTextSize;
@@ -36,14 +37,17 @@ class BigCard extends StatelessWidget {
               padding: EdgeInsets.only(left: 10),
               child: Text(
                 fName,
-                style: TextStyle(fontSize: firstTextSize),
+                style: TextStyle(
+                    fontSize: firstTextSize, color: Color(0xff263A29)),
               )),
           Padding(
             padding: EdgeInsets.only(left: 10),
             child: Text(
               lName,
               style: TextStyle(
-                  fontSize: secondTextSize, fontWeight: FontWeight.w400),
+                  fontSize: secondTextSize,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff263A29)),
             ),
           )
         ],

@@ -5,6 +5,8 @@ import 'imageAvatar.dart';
 import 'bigCard.dart';
 import 'stats_screen.dart';
 
+import 'package:slide_drawer/slide_drawer.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,17 +23,19 @@ class _HomePageState extends State<HomePage> {
           //main column
           Column(
             children: [
-              //dashboard
-              Padding(
-                padding: EdgeInsets.only(bottom: 10),
-                child: Text(
-                  'Dashboard',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),
+              //menu bar
+              Row(children: [
+                GestureDetector(
+                  onTap: () => SlideDrawer.of(context)?.toggle(),
+                  child: Padding(
+                      padding: EdgeInsets.only(bottom: 20, left: 25),
+                      child: Icon(
+                        Icons.menu,
+                        size: 30,
+                        color: Colors.white,
+                      )),
                 ),
-              ),
+              ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -98,14 +102,6 @@ class _HomePageState extends State<HomePage> {
                           name: 'joe',
                           image: 'download.jpeg',
                         ),
-                        MembersAvatar(
-                          name: 'mike',
-                          image: 'download.jpeg',
-                        ),
-                        MembersAvatar(
-                          name: 'john',
-                          image: 'download.jpeg',
-                        ),
                         GestureDetector(
                           onTap: () {},
                           child: Column(
@@ -136,16 +132,20 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Column(
                     children: [
-                      ReusableCard(
-                        iconSize: 40,
-                        label: 'Loans',
-                        cardHeight: 80.0,
-                        cardWidth: 100.0,
-                        icon: Icons.money,
+                      GestureDetector(
+                        onTap: () {},
+                        child: ReusableCard(
+                          iconSize: 40,
+                          label: 'Loans',
+                          cardHeight: 80.0,
+                          cardWidth: 100.0,
+                          icon: Icons.money,
+                        ),
                       ),
                       SizedBox(
                         height: 17,
                       ),
+                      //stats button
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
